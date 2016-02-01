@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="../angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="MainController">
+
+<h1>{{msg}}</h1>
+
+<div>
+
+    <label>Search: <input ng-model="searchText"></label>
+    <table id="searchTextResults">
+      <tr><th>Name</th><th>Phone</th></tr>
+      <tr ng-repeat="friend in friends | filter:searchText">
+        <td>{{friend.name}}</td>
+        <td>{{friend.phone}}</td>
+      </tr>
+    </table>
+
+    <hr>
+    <label>Any: <input ng-model="search.$"></label> <br>
+    <label>Name only <input ng-model="search.name"></label><br>
+    <label>Phone only <input ng-model="search.phone"></label><br>
+    <br>
+    <table id="searchObjResults">
+      <tr><th>Name</th><th>Phone</th></tr>
+      <tr ng-repeat="friendObj in friends | filter:search">
+        <td>{{friendObj.name}}</td>
+        <td>{{friendObj.phone}}</td>
+      </tr>
+    </table>
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    var myApp = angular.module('myApp', [])
+
+    myApp.controller('MainController', ['$scope', function($scope){
+        $scope.msg = 'hello world'
+
+
+        $scope.friends = [{name:'John', phone:'555-1276'},
+                         {name:'Mary', phone:'800-BIG-MARY'},
+                         {name:'Mike', phone:'555-4321'},
+                         {name:'Adam', phone:'555-5678'},
+                         {name:'Julie', phone:'555-8765'},
+                         {name:'Juliette', phone:'555-5678'}]
+
+
+
+    }]);
+
+
+</script>
+
+</html>
